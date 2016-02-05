@@ -4,22 +4,22 @@
 # Author: Twwy
 # Description: parse the argv in python
 #
-# python test.py xxx -a 1 -b 2 2 4 -t 
+# python test.py xxx -a 1 --b 2 2 4 -t 
 #
-# data: {"default":["xxx"], "a":["1"], "b":["2","2","4"], "t":[]}
+# data: {"default":["xxx"], "-a":["1"], "--b":["2","2","4"], "-t":[]}
 #
 #
 # usage
 #
 # import parser
 # parser.load()
-# a = parser.read("a")       # 1
-# b = parser.read("b")       # 2
-# b1 = parser.readList("b")  # ["2","2","4"]
+# a = parser.read("-a")       # 1
+# b = parser.read("--b")       # 2
+# b1 = parser.readList("--b")  # ["2","2","4"]
 # c = parser.read()          # xxx
-# d = parser.read("b","a")   # 2
-# e = parser.read("e")       # None
-# t = parser.read("t")       # ""
+# d = parser.read("--b","-a")   # 2
+# e = parser.read("-e")       # None
+# t = parser.read("-t")       # ""
 
 import sys
 
@@ -29,9 +29,8 @@ def load():
     if len(sys.argv[1:]) == 0: return False
     key = "default"
     for raw in sys.argv[1:]:
-        if raw.startswith("-"):
-            key = raw.lstrip('-')
-            if key not in data: data[key] = []
+        if raw.startswith("-"): #key
+            if raw not in data: data[raw] = []
         else:
             data[key].append(raw)
     return True
