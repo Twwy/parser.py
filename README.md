@@ -6,7 +6,7 @@ It may be the smallest parser in python.
 # INPUT
 	python test.py xxx -a 1 -b 2 2 4 -t 
 # DATA IN PARSER
-	data: {"default":["xxx"], "a":["1"], "b":["2","2","4"]}
+	data: {"default":["xxx"], "a":["1"], "b":["2","2","4"], "t":[]}
 
 # USAGE
 
