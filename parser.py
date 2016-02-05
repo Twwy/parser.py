@@ -29,8 +29,9 @@ def load():
     if len(sys.argv[1:]) == 0: return False
     key = "default"
     for raw in sys.argv[1:]:
-        if raw.startswith("-"): #key
-            if raw not in data: data[raw] = []
+        if raw.startswith("-"):
+            key = raw
+            if key not in data: data[key] = []
         else:
             data[key].append(raw)
     return True
